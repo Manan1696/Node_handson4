@@ -1,8 +1,8 @@
 const exp = require("express").Router()
 const bcrypt = require('bcrypt')
-const users = [] //storing data and also accessing data
+const users = [] 
 const jwtToken = require('jsonwebtoken')
-const { check, validationResult } = require('express-validator') //validate email,password
+const { check, validationResult } = require('express-validator') 
 
 exp.post('/signup', [
     check("email", "please provide a valid mail")
@@ -43,7 +43,7 @@ exp.post('/signup', [
             ]
         })
     }
-    const hashPassword = await bcrypt.hash(password, 10)//hashing the password given by user
+    const hashPassword = await bcrypt.hash(password, 10)
     users.push({
         email,
         password: hashPassword
@@ -53,7 +53,7 @@ exp.post('/signup', [
 
 exp.post('/login', async (req, res) => {
     const { password, email } = req.body
-    let user = users.find((user) => {   //validating if user is present or not
+    let user = users.find((user) => {   
         return user.email === email;
     })
 
